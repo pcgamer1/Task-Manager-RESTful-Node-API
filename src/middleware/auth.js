@@ -10,6 +10,7 @@ const auth = async (req, res, next) => {
             throw new Error('User not found')
         }
         req.user = user
+        req.token = token
         next()
     } catch(e) {
         res.status(401).send({ error: 'Please Authenticate' })
