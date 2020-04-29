@@ -10,7 +10,6 @@ router.post('/tasks', auth, async (req, res) => {
         ...req.body,
         owner: req.user._id
     })
-    console.log(task, req.user._id)
     try {
         await task.save()
         res.status(201).send(task)
@@ -68,7 +67,6 @@ router.patch('/tasks/:id', auth, async (req, res) => {
     }
     try {
         const task = await Task.findOne({ _id, owner: req.user._id})
-        console.log(task)
         if(!task) {
             return res.status(404).send()
         }
